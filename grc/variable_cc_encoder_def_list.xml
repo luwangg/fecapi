@@ -11,9 +11,9 @@
     <import>import fec</import>
     <var_make>
 #if int($ndim())==1 #
-self.$(id) = $(id) = map( (lambda a: fec.cc_make_encoder($framebits, $k, $rate, $polys, $state_start, $state_end,  $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim1) ); #slurp
+self.$(id) = $(id) = map( (lambda a: fec.cc_encoder_make($framebits, $k, $rate, $polys, $state_start, $state_end,  $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim1) ); #slurp
 #else 
-self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_make_encoder($framebits, $k, $rate, $polys, $state_start, $state_end, $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim2) ) ), range(0,$dim1)); #slurp
+self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_encoder_make($framebits, $k, $rate, $polys, $state_start, $state_end, $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim2) ) ), range(0,$dim1)); #slurp
 #end if</var_make>
     <make></make>
 

@@ -20,35 +20,38 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_CC_ENCODER_H
-#define INCLUDED_CC_ENCODER_H
+#ifndef INCLUDED_FEC_ENCODER_IMPL_H
+#define INCLUDED_FEC_ENCODER_IMPL_H
 
-#include <map>
-#include <string>
 #include <fec_encoder.h>
-#include <cc_common.h>
 
 namespace gr {
   namespace fec {
-    namespace code {
 
-      /*!
-       * \brief Convolutional Code Encoding block
-       * \ingroup error_coding_blk
-       */
-      class FEC_API cc_encoder : virtual public generic_encoder
-      {
-      public:
-        static generic_encoder::sptr make
-          (int framebits, int k,
-           int rate, std::vector<int> polys,
-           int start_state = 0, int end_state = 0,
-           bool tailbiting = false, bool terminated = false,
-           bool truncated = false, bool streaming = true);
-      };
+    class FEC_API encoder_impl : public encoder
+    {
+    private:
+      generic_encoder::sptr d_encoder;
+      size_t d_input_item_size;
+      size_t d_output_item_size;
 
-    } /* namespace code */
+    public:
+      encoder_impl(generic_encoder::sptr my_encoder,
+                       size_t input_item_size,
+                       size_t output_item_size);
+      ~encoder_impl();
+
+      int general_work(int noutput_items,
+                       gr_vector_int& ninput_items,
+                       gr_vector_const_void_star &input_items,
+                       gr_vector_void_star &output_items);
+      int fixed_rate_ninput_to_noutput(int ninput);
+      int fixed_rate_noutput_to_ninput(int noutput);
+      void forecast(int noutput_items,
+                    gr_vector_int& ninput_items_required);
+    };
+
   } /* namespace fec */
 } /* namespace gr */
 
-#endif /* INCLUDED_CC_ENCODER_H */
+#endif /* INCLUDED_FEC_ENCODER_IMPL_H */

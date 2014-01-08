@@ -11,16 +11,17 @@
 %include <fec_interleave.i>
 %include <fec_deinterleave.i>
 %include <cc_decoder.i>
-%include <cc_encoder.i>
 %include <fec_corr_bb.i>
 %include <fec_reinflate_bb.i>
 %include <ber_sink_b.i>
 
 %{
+#include "cc_encoder.h"
 #include "fec_ber_bf.h"
 #include "fec_puncture_ff.h"
 %}
 
+%include "cc_encoder.h"
 %include "fec_ber_bf.h"
 %include "fec_puncture_ff.h"
 

@@ -4,32 +4,12 @@
 #include "fec_encoder.h"
 %}
 
-%nodefaultctor generic_encoder;
-class generic_encoder {
- public:
-    ~generic_encoder();
-    
-};
- 
-typedef boost::shared_ptr<generic_encoder> generic_encoder_sptr;
-%template(generic_encoder_sptr) boost::shared_ptr<generic_encoder>;
-%rename(get_encoder_output_size) fec_get_encoder_output_size(generic_encoder_sptr);
-%rename(get_encoder_input_size) fec_get_encoder_input_size(generic_encoder_sptr);
+%include "fec_encoder.h"
 
+%nodefaultctor gr::fec::generic_encoder;
 
+GR_SWIG_BLOCK_MAGIC2(fec, encoder);
 
-int fec_get_encoder_output_size(generic_encoder_sptr my_encoder);
-int fec_get_encoder_input_size(generic_encoder_sptr my_encoder);
-
-
-
-GR_SWIG_BLOCK_MAGIC(fec,encoder);
-
-fec_encoder_sptr fec_make_encoder(generic_encoder_sptr my_encoder, size_t input_item_size, size_t output_item_size);
-		
-class fec_encoder : public gr::block
-{
- private:
-    fec_encoder(generic_encoder_sptr, size_t, size_t);
-    
-};
+%template(generic_encoder_sptr) boost::shared_ptr<gr::fec::generic_encoder>;
+%rename(get_encoder_output_size) fec_get_encoder_output_size(gr::fec::generic_encoder::sptr);
+%rename(get_encoder_input_size) fec_get_encoder_input_size(gr::fec::generic_encoder::sptr);

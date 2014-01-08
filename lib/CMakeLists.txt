@@ -34,13 +34,13 @@ include_directories(
 list(APPEND gnuradio_fec_sources
     libbertools.cc
     fec_random_gen_b.cc
-    fec_encoder.cc
+    fec_encoder_impl.cc
     fec_decoder.cc
     fec_ber_bf_impl.cc
     fec_interleave.cc
     fec_deinterleave.cc
     cc_decoder.cc
-    cc_encoder.cc
+    cc_encoder_impl.cc
     fec_corr_bb.cc
     fec_reinflate_bb.cc
     fec_puncture_ff_impl.cc

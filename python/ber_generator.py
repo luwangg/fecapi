@@ -32,9 +32,6 @@ class ber_generator(gr.hier_block2):
 		self.threading = threading
 		self.puncpat = puncpat
 
-                print type(generic_encoder), generic_encoder
-                print type(generic_decoder), generic_decoder
-
 		##################################################
 		# Blocks
 		##################################################
