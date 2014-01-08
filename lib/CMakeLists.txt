@@ -23,24 +23,31 @@
 include(GrPlatform) #define LIB_SUFFIX
 include(GrPython)
 GR_PYTHON_CHECK_MODULE("PyQt4" PyQt4 True PYQT4_FOUND)
-    
 
-add_library(fec SHARED
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_BINARY_DIR}
+  ${GNURADIO_RUNTIME_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
+)
+
+list(APPEND gnuradio_fec_sources
     libbertools.cc
     fec_random_gen_b.cc
     fec_encoder.cc
-    fec_gaussnoise_ff.cc
     fec_decoder.cc
-    fec_ber_bb.cc
+    fec_ber_bf_impl.cc
     fec_interleave.cc
     fec_deinterleave.cc
     cc_decoder.cc
     cc_encoder.cc
     fec_corr_bb.cc
     fec_reinflate_bb.cc
-    fec_puncture_ff.cc
+    fec_puncture_ff_impl.cc
     ber_sink_b_impl.cc
 )
+
+add_library(fec SHARED ${gnuradio_fec_sources})
 
 message("${GNURADIO_QTGUI_LIBRARIES}")
 message("${QT_LIBRARIES}")

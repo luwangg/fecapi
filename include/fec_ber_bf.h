@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2006 Free Software Foundation, Inc.
+ * Copyright 2013-2014 Free Software Foundation, Inc.
  * 
  * This file is part of GNU Radio
  * 
@@ -19,31 +19,33 @@
  * the Free Software Foundation, Inc., 51 Franklin Street,
  * Boston, MA 02110-1301, USA.
  */
-#ifndef INCLUDED_FEC_GAUSSNOISE_FF_H
-#define INCLUDED_FEC_GAUSSNOISE_FF_H
 
-#include <gnuradio/sync_block.h>
+#ifndef INCLUDED_FEC_BER_BF_H
+#define INCLUDED_FEC_BER_BF_H
+
+#include <gnuradio/block.h>
 #include <fec_api.h>
 
+namespace gr {
+  namespace fec {
+ 
+    /*! \brief BER block in FECAPI
+     * \ingroup error_coding_blk
+     *
+     * \details
+     *
+     * What does this block do?
+     */   
+    class FEC_API ber_bf : virtual public block
+    {
+    public:
+      // gr::fec::ber_bf::sptr
+      typedef boost::shared_ptr<ber_bf> sptr;
 
-class fec_gaussnoise_ff;
-typedef boost::shared_ptr<fec_gaussnoise_ff> fec_gaussnoise_ff_sptr;
+      static sptr make(int berminerrors = 100, float ber_limit = -7.0);
+    };
 
+  } /* namespace fec */
+} /* namespace gr */
 
-FEC_API fec_gaussnoise_ff_sptr fec_make_gaussnoise_ff(float EsNo);
-
-
-class FEC_API fec_gaussnoise_ff : public gr::sync_block
-{
-  friend fec_gaussnoise_ff_sptr fec_make_gaussnoise_ff(float EsNo);
-  float d_sigma; //callback opportunity
-  fec_gaussnoise_ff(float EsNo);
-  
- public:
-  int work (int noutput_items, 
-	    gr_vector_const_void_star &input_items,
-	    gr_vector_void_star &output_items);
-};
-
-
-#endif /* INCLUDED_FEC_GAUSSNOISE_FF_H */
+#endif /* INCLUDED_FEC_BER_BF_H */

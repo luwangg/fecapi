@@ -32,6 +32,9 @@ class ber_generator(gr.hier_block2):
 		self.threading = threading
 		self.puncpat = puncpat
 
+                print type(generic_encoder), generic_encoder
+                print type(generic_decoder), generic_decoder
+
 		##################################################
 		# Blocks
 		##################################################
@@ -44,16 +47,16 @@ class ber_generator(gr.hier_block2):
                 self.encoder_interface_0 = extended_encoder_interface(encoder_obj_list=generic_encoder, threading='capillary', puncpat=puncpat);
 		self.gaussnoise_ff_0 = fec.gaussnoise_ff(esno)
 		self.decoder_interface_0 = extended_decoder_interface(decoder_obj_list=generic_decoder, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000, rotator=None)
-		self.ber_bb_0_0 = fec.ber_bb(berminerrors, berlimit)
+		self.ber_bf_0_0 = fec.ber_bf(berminerrors, berlimit)
 
 		##################################################
 		# Connections
 		##################################################
-		self.connect((self.gr_unpacked_to_packed_xx_0_0, 0), (self.ber_bb_0_0, 0))
-		self.connect((self.gr_unpacked_to_packed_xx_0, 0), (self.ber_bb_0_0, 1))
+		self.connect((self.gr_unpacked_to_packed_xx_0_0, 0), (self.ber_bf_0_0, 0))
+		self.connect((self.gr_unpacked_to_packed_xx_0, 0), (self.ber_bf_0_0, 1))
 		#self.connect((self.gr_throttle_0, 0), (self.generic_encoder_0, 0))
 		self.connect((self.gr_throttle_0, 0), (self.gr_unpacked_to_packed_xx_0, 0))
-		self.connect((self.ber_bb_0_0, 0), (self, 0))
+		self.connect((self.ber_bf_0_0, 0), (self, 0))
 		self.connect((self.decoder_interface_0, 0), (self.gr_unpacked_to_packed_xx_0_0, 0))
 		#self.connect((self.generic_encoder_0, 0), (self.puncture_ff_0, 0))
 		#self.connect((self.puncture_ff_0, 0), (self.gaussnoise_ff_0, 0))

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<block>
+  <name>Gaussian Noise</name>
+  <key>fec_gaussnoise_ff</key>
+  <category>FECAPI</category>
+  <import>import fec</import>
+  <make>fec.gaussnoise_ff($esno, $seed)</make>
+  <callback>set_esno($esno)</callback>
+
+  <param>
+    <name>Es/N0</name>
+    <key>esno</key>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Seed</name>
+    <key>seed</key>
+    <value>0</value>
+    <type>int</type>
+  </param>
+  
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+  
+</block>

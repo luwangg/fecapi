@@ -83,7 +83,4 @@
     <type>float</type>
     <vlen>1</vlen>
   </source>
-  <doc>
-
-/home/namccart/.grc_gnuradio/bercurve.py</doc>
 </block>

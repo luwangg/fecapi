@@ -22,10 +22,12 @@
 ########################################################################
 install(FILES
     fec_api.h
+    fec_ber_bf.h
     fec_encoder.h
     fec_decoder.h
     fec_interleave.h
     fec_deinterleave.h
+    fec_puncture_ff.h
     cc_encoder.h
     DESTINATION include/fec
 )

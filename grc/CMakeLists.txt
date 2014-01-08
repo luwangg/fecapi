@@ -18,10 +18,13 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
+  fec_ber_bf.xml
   fec_encoder.xml
   fec_decoder.xml
   fec_interleave.xml
   fec_deinterleave.xml
+  fec_gaussnoise_ff.xml
+  fec_puncture_ff.xml
   wxgui_curvesink.xml
   bercurve_generate.py.xml
   extended_decoder_interface.xml

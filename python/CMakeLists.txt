@@ -35,6 +35,7 @@ GR_PYTHON_INSTALL(
     __init__.py
     bercurve_generate.py
     ber_generator.py
+    gaussnoise_ff.py
     threaded_decoder.py
     capillary_threaded_decoder.py
     extended_decoder_interface.py

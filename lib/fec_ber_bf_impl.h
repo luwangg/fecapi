@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2006 Free Software Foundation, Inc.
+ * Copyright 2013-2014 Free Software Foundation, Inc.
  * 
  * This file is part of GNU Radio
  * 
@@ -19,37 +19,37 @@
  * the Free Software Foundation, Inc., 51 Franklin Street,
  * Boston, MA 02110-1301, USA.
  */
-#ifndef INCLUDED_FEC_BER_BB_H
-#define INCLUDED_FEC_BER_BB_H
 
-#include <gnuradio/block.h>
-#include <fec_api.h>
+#ifndef INCLUDED_FEC_BER_BF_IMPL_H
+#define INCLUDED_FEC_BER_BF_IMPL_H
 
+#include <fec_ber_bf.h>
 
-class fec_ber_bb;
-typedef boost::shared_ptr<fec_ber_bb> fec_ber_bb_sptr;
+namespace gr {
+  namespace fec {
+ 
+    class FEC_API ber_bf_impl : public ber_bf
+    {
+    private:
+      int d_total_errors;
+      int d_berminerrors;
+      float d_ber_limit;
+      int d_total;
 
+    public:
+    ber_bf_impl(int berminerrors = 100, float ber_limit = -7.0);
+    ~ber_bf_impl();
 
-FEC_API fec_ber_bb_sptr fec_make_ber_bb(int berminerrors = 100, float berLimit = -7.0);
+    int general_work(int noutput_items,
+                     gr_vector_int& ninput_items,
+                     gr_vector_const_void_star &input_items,
+                     gr_vector_void_star &output_items);
 
-
-class FEC_API fec_ber_bb : public gr::block
-{
-    friend fec_ber_bb_sptr fec_make_ber_bb(int berminerrors, float berLimit);
-    int d_totalErrors;
-    int d_berminerrors;
-    float d_berLimit;
-    int d_total;
-    fec_ber_bb(int berminerrors = 100, float berLimit = -7.0);
-    
- public:
-    int general_work (int noutput_items,
-		      gr_vector_int& ninput_items,
-		      gr_vector_const_void_star &input_items,
-		      gr_vector_void_star &output_items);
     void forecast(int noutput_items,
 		  gr_vector_int& ninput_items_required);
-};
+    };
 
+  } /* namespace fec */
+} /* namespace gr */
 
-#endif /* INCLUDED_FEC_BER_BB_H */
+#endif /* INCLUDED_FEC_BER_BF_IMPL_H */
