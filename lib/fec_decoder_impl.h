@@ -20,26 +20,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_FEC_ENCODER_IMPL_H
-#define INCLUDED_FEC_ENCODER_IMPL_H
+#ifndef INCLUDED_FEC_DECODER_IMPL_H
+#define INCLUDED_FEC_DECODER_IMPL_H
 
-#include <fec_encoder.h>
+#include <fec_decoder.h>
 
 namespace gr {
   namespace fec {
 
-    class FEC_API encoder_impl : public encoder
+    class FEC_API decoder_impl : public decoder
     {
     private:
-      generic_encoder::sptr d_encoder;
+      generic_decoder::sptr d_decoder;
       size_t d_input_item_size;
       size_t d_output_item_size;
+      buf_sptr d_inbuf;
 
     public:
-      encoder_impl(generic_encoder::sptr my_encoder,
+      decoder_impl(generic_decoder::sptr my_decoder,
                    size_t input_item_size,
                    size_t output_item_size);
-      ~encoder_impl();
 
       int general_work(int noutput_items,
                        gr_vector_int& ninput_items,
@@ -54,4 +54,4 @@ namespace gr {
   } /* namespace fec */
 } /* namespace gr */
 
-#endif /* INCLUDED_FEC_ENCODER_IMPL_H */
+#endif /* INCLUDED_FEC_DECODER_IMPL_H */

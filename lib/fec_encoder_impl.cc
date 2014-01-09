@@ -20,6 +20,10 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "fec_encoder_impl.h"
 #include <gnuradio/io_signature.h>
 #include <stdio.h>
@@ -45,8 +49,8 @@ namespace gr {
 
     encoder::sptr
     encoder::make(generic_encoder::sptr my_encoder,
-                      size_t input_item_size,
-                      size_t output_item_size)
+                  size_t input_item_size,
+                  size_t output_item_size)
     {
       return gnuradio::get_initial_sptr
         (new encoder_impl(my_encoder, input_item_size, output_item_size));

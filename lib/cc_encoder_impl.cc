@@ -1,19 +1,19 @@
 /* -*- c++ -*- */
 /*
  * Copyright 2013-2014 Free Software Foundation, Inc.
- * 
+ *
  * This file is part of GNU Radio
- * 
+ *
  * GNU Radio is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3, or (at your option)
  * any later version.
- * 
+ *
  * GNU Radio is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with GNU Radio; see the file COPYING.  If not, write to
  * the Free Software Foundation, Inc., 51 Franklin Street,
@@ -118,7 +118,7 @@ namespace gr {
       cc_encoder_impl::partab_init(void)
       {
         int i,cnt,ti;
-    
+
         /* Initialize parity lookup table */
         for(i=0;i<256;i++){
           cnt = 0;
@@ -133,28 +133,28 @@ namespace gr {
       }
 
       void
-      cc_encoder_impl::generic_work(void *inBuffer, void *outBuffer)   
+      cc_encoder_impl::generic_work(void *inBuffer, void *outBuffer)
       {
         const unsigned char *in = (const unsigned char *) inBuffer;
         float *out = (float *) outBuffer;
-    
+
         int my_state = d_start_state;
         //printf("ms: %d\n", my_state);
-    
+
         if(d_tailbiting) {
           for(int i = 0; i < d_k - 1; ++i) {
             my_state = (my_state << 1) | (in[d_framebits - (d_k - 1)  + i] & 1);
           }
         }
         //printf("start... %d\n", my_state & ((1 << (d_k - 1)) - 1));
-    
+
         for(int i = 0; i < d_framebits; ++i) {
           my_state = (my_state << 1) | (in[i] & 1);
           for(int j = 0; j < d_rate; ++j) {
             out[i * d_rate + j] = parity(my_state & d_polys[j]) == 0 ? -1.0 : 1.0;
           }
         }
-  
+
         if(d_terminated) {
           for(int i = 0; i < d_k - 1; ++i) {
             my_state = (my_state << 1) | ((d_start_state >> d_k - 2 - i) & 1);
@@ -178,16 +178,16 @@ namespace gr {
           }
         }
         */
-    
+
         if(d_truncated) {
           //printf("end... %d\n", my_state & ((1 << (d_k - 1)) - 1));
           my_state = d_start_state;
         }
-    
+
         d_start_state = my_state;
         //d_start_state = my_state & (1 << d_k -1) - 1;
         //printf("ms: %d\n", d_start_state);
-  
+
         /*
         for(int i = d_framebits * d_rate - 25; i < d_framebits * d_rate; ++i) {
           //for(int i = 0; i < 25; ++i) {

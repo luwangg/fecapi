@@ -25,7 +25,6 @@
 
 #include <fec_api.h>
 #include <gnuradio/block.h>
-#include <boost/shared_ptr.hpp>
 
 namespace gr {
   namespace fec {
@@ -40,6 +39,7 @@ namespace gr {
 
       virtual int get_input_size() = 0;
       virtual int get_output_size() = 0;
+      generic_encoder(void) {};
       virtual ~generic_encoder();
     };
 
