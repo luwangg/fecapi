@@ -37,8 +37,8 @@ list(APPEND gnuradio_fec_sources
     fec_encoder_impl.cc
     fec_decoder_impl.cc
     fec_ber_bf_impl.cc
-    fec_interleave.cc
-    fec_deinterleave.cc
+    fec_interleave_impl.cc
+    fec_deinterleave_impl.cc
     cc_decoder_impl.cc
     cc_encoder_impl.cc
     fec_corr_bb.cc
@@ -52,8 +52,8 @@ add_library(fec SHARED ${gnuradio_fec_sources})
 message("${GNURADIO_QTGUI_LIBRARIES}")
 message("${QT_LIBRARIES}")
 
-target_link_libraries(fec 
-    ${Boost_LIBRARIES} 
+target_link_libraries(fec
+    ${Boost_LIBRARIES}
     ${VOLK_LIBRARIES}
     ${QT_LIBRARIES}
     ${QWT_LIBRARIES}
@@ -68,7 +68,7 @@ set_target_properties(fec PROPERTIES DEFINE_SYMBOL "fec_EXPORTS")
 ########################################################################
 # Install info files for Python
 ########################################################################
-install(FILES 
+install(FILES
   DESTINATION ${GR_PYTHON_DIR}/fec
 )
 

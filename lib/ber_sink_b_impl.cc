@@ -1,19 +1,19 @@
 /* -*- c++ -*- */
 /*
  * Copyright 2006 Free Software Foundation, Inc.
- * 
+ *
  * This file is part of GNU Radio
- * 
+ *
  * GNU Radio is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3, or (at your option)
  * any later version.
- * 
+ *
  * GNU Radio is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with GNU Radio; see the file COPYING.  If not, write to
  * the Free Software Foundation, Inc., 51 Franklin Street,
@@ -40,40 +40,39 @@ fec_ber_sink_b_impl::fec_ber_sink_b_impl(std::vector<float> esnos, int curves, i
   : gr::block("fec_ber_sink_b",
 	      gr::io_signature::make(curves * esnos.size() * 2, curves * esnos.size() * 2, sizeof(unsigned char)),
 	      gr::io_signature::make(0, 0, 0)),
-    d_berminerrors(berminerrors), 
-    d_berLimit(berLimit), 
+    d_berminerrors(berminerrors),
+    d_berLimit(berLimit),
     d_parent(parent),
     d_nconnections(esnos.size()),
     d_last_time(0)
 {
   d_main_gui = NULL;
-  
-  
+
   d_residbufs_real.reserve(curves);
   d_residbufs_imag.reserve(curves);
   d_total.reserve(curves * esnos.size());
   d_totalErrors.reserve(curves * esnos.size());
-  
+
   for(int j= 0; j < curves; j++) {
     d_residbufs_real.push_back(gr::fft::malloc_double(esnos.size()));
     d_residbufs_imag.push_back(gr::fft::malloc_double(esnos.size()));
     for(int i = 0; i < d_nconnections; i++) {
-    
+
       d_residbufs_real[j][i] = esnos[i];
       d_residbufs_imag[j][i] = 0.0;
       d_total.push_back(0);
       d_totalErrors.push_back(1);
     }
   }
-  
-  
+
+
   initialize();
   for(int j= 0; j < curves; j++) {
     set_line_width(j, 1);
     //35 unique styles supported
     set_line_style(j, (j%5) + 1);
     set_line_marker(j, (j%7));
-    
+
   }
   if(curvenames.size() == curves) {
     for(int j = 0; j < curves; j++) {
@@ -92,7 +91,7 @@ fec_ber_sink_b_impl::~fec_ber_sink_b_impl() {
   for(int i = 0; i < d_residbufs_real.size(); i++) {
     gr::fft::free(d_residbufs_real[i]);
     gr::fft::free(d_residbufs_imag[i]);
-    
+
   }
 }
 
@@ -113,7 +112,7 @@ fec_ber_sink_b_impl::initialize()
     char **argv = NULL;
     d_qApplication = new QApplication(argc, argv);
   }
-  
+
   d_main_gui = new ConstellationDisplayForm(d_residbufs_real.size(), d_parent);
 
   d_main_gui->setNPoints(d_nconnections);
@@ -289,14 +288,14 @@ fec_ber_sink_b_impl::general_work (int noutput_items,
 			      new ConstUpdateEvent(d_residbufs_real,
 						   d_residbufs_imag,
 						   d_nconnections));
-    
+
   }
-  
+
   //check stopping condition
   int done=0, maxed=0;
   for(int j = 0; j < d_residbufs_real.size(); ++j) {
     for(int i = 0; i < d_nconnections; ++i) {
-    
+
       if (d_totalErrors[j * d_nconnections + i] >= d_berminerrors) {
 	done++;
       }
@@ -314,7 +313,7 @@ fec_ber_sink_b_impl::general_work (int noutput_items,
 
     return -1;
   }
-  
+
   /*for(int i = 0; i < d_nconnections; ++i) {
     printf("%f, ", d_residbufs_imag[0][i]);
   }
@@ -325,33 +324,33 @@ fec_ber_sink_b_impl::general_work (int noutput_items,
   printf("\n");*/
 
   for(int i = 0; i < ninput_items.size(); i += 2) {
-    
-    
-    
+
+
+
     if ((d_totalErrors[i >> 1] < d_berminerrors) && (log10(((double)d_berminerrors)/(d_total[i >> 1] * 8.0)) >= d_berLimit)) {
-      
+
 	int items = ninput_items[i] <= ninput_items[i+1] ? ninput_items[i] : ninput_items[i+1];
 
-	    
+
 	unsigned char *inBuffer0 = (unsigned char *)input_items[i];
 	unsigned char *inBuffer1 = (unsigned char *)input_items[i+1];
-    
-    
-    
-    
+
+
+
+
 	if(items > 0) {
-      
+
 	  d_totalErrors[i >> 1] += compBER(inBuffer0, inBuffer1, items);
 	  d_total[i >> 1] += items;
-	  
+
 	  d_residbufs_imag[i/(d_nconnections * 2)][(i%(d_nconnections * 2)) >> 1] = log10(((double)d_totalErrors[i >> 1])/(d_total[i >> 1] * 8.0));
-	  
+
 	}
 	consume(i, items);
 	consume(i + 1, items);
-    
-	
-	
+
+
+
 	if(d_totalErrors[i >> 1] >= d_berminerrors) {
 	  printf("    %u over %d\n", d_totalErrors[i >> 1], d_total[i >> 1] * 8);
       //outBuffer[0] = log10(((double)d_totalErrors)/(d_total * 8.0));
@@ -361,18 +360,18 @@ fec_ber_sink_b_impl::general_work (int noutput_items,
 	  d_residbufs_imag[i/(d_nconnections * 2)][(i%(d_nconnections * 2)) >> 1] = d_berLimit;
 	  d_totalErrors[i >> 1] = d_berminerrors + 1;
 	}
-	
-      
+
+
     }
     else {
       consume(i, ninput_items[i]);
       consume(i+1, ninput_items[i+1]);
     }
-  
+
   }
 
   return 0;
-  
+
 }
 
 

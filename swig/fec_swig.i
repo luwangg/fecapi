@@ -8,8 +8,6 @@
 %include <fec_random_gen_b.i>
 %include <fec_encoder.i>
 %include <fec_decoder.i>
-%include <fec_interleave.i>
-%include <fec_deinterleave.i>
 %include <fec_corr_bb.i>
 %include <fec_reinflate_bb.i>
 %include <ber_sink_b.i>
@@ -18,13 +16,19 @@
 #include "cc_encoder.h"
 #include "cc_decoder.h"
 #include "fec_ber_bf.h"
+#include "fec_deinterleave.h"
+#include "fec_interleave.h"
 #include "fec_puncture_ff.h"
 %}
 
 %include "cc_encoder.h"
 %include "cc_decoder.h"
 %include "fec_ber_bf.h"
+%include "fec_deinterleave.h"
+%include "fec_interleave.h"
 %include "fec_puncture_ff.h"
 
 GR_SWIG_BLOCK_MAGIC2(fec, ber_bf);
+GR_SWIG_BLOCK_MAGIC2(fec, deinterleave);
+GR_SWIG_BLOCK_MAGIC2(fec, interleave);
 GR_SWIG_BLOCK_MAGIC2(fec, puncture_ff);
