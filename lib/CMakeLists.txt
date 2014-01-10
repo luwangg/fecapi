@@ -33,18 +33,18 @@ include_directories(
 
 list(APPEND gnuradio_fec_sources
     libbertools.cc
-    fec_random_gen_b.cc
+    fec_ber_bf_impl.cc
+    fec_corr_bb_impl.cc
     fec_encoder_impl.cc
     fec_decoder_impl.cc
-    fec_ber_bf_impl.cc
-    fec_interleave_impl.cc
     fec_deinterleave_impl.cc
+    fec_interleave_impl.cc
+    fec_puncture_ff_impl.cc
+    fec_random_gen_b_impl.cc
+    fec_reinflate_bb_impl.cc
+    ber_sink_b_impl.cc
     cc_decoder_impl.cc
     cc_encoder_impl.cc
-    fec_corr_bb.cc
-    fec_reinflate_bb.cc
-    fec_puncture_ff_impl.cc
-    ber_sink_b_impl.cc
 )
 
 add_library(fec SHARED ${gnuradio_fec_sources})

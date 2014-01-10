@@ -1,87 +1,62 @@
+/* -*- c++ -*- */
+/*
+ * Copyright 2013-2014 Free Software Foundation, Inc.
+ *
+ * This file is part of GNU Radio
+ *
+ * GNU Radio is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * GNU Radio is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with GNU Radio; see the file COPYING.  If not, write to
+ * the Free Software Foundation, Inc., 51 Franklin Street,
+ * Boston, MA 02110-1301, USA.
+ */
+
 #ifndef INCLUDED_FEC_CORR_BB_H
 #define INCLUDED_FEC_CORR_BB_H
 
-#include <gnuradio/block.h>
-#include <inttypes.h>
-#include <vector>
 #include <fec_api.h>
-#include <pmt/pmt.h>
-#include <boost/bind.hpp>
-#include <gnuradio/rpcregisterhelpers.h>
+#include <gnuradio/block.h>
+#include <vector>
 
+namespace gr {
+  namespace fec {
 
-class fec_corr_bb;
-typedef boost::shared_ptr<fec_corr_bb> fec_corr_bb_sptr;
+    /*!
+     * \brief Correlate block in FECAPI
+     * \ingroup error_coding_blk
+     *
+     * \details
+     *
+     * What does this block do?
+     */
+    class FEC_API corr_bb : virtual public block
+    {
+    public:
+      // gr::fec::corr_bb::sptr
+      typedef boost::shared_ptr<corr_bb> sptr;
 
+      static sptr make(std::vector<unsigned long long> correlator,
+                       int corr_sym, int corr_len, int cut,
+                       int flush, float thresh);
 
+      /*!
+       * This subroutine will find the encoded data garble rate
+       * corresponding to a syndrome density of `target', that is created
+       * with an annihilating polynomial with 'taps' number of taps.
+       */
+      virtual float data_garble_rate(int taps, float syn_density) = 0;
+    };
 
-FEC_API fec_corr_bb_sptr
-fec_make_corr_bb (std::vector<unsigned long long> correlator, int corr_sym, int corr_len, int cut, int flush, float thresh);
-
-
-
-class FEC_API fec_corr_bb : public gr::block
-{
-    std::vector< std::vector<int> > d_score_keeper;
-    unsigned int d_lane;
-    unsigned int d_op;
-
-     
-    void catch_msg(pmt::pmt_t msg);
-    
-    int d_angry_fop;
-    int d_acquire;
-    //int d_acquire_track;
-    unsigned int d_produce;
-    unsigned int d_message;
-    unsigned int d_thresh;
-    unsigned int d_corr_len;
-    std::vector< std::vector<unsigned char> > d_correlator;
-    std::vector<unsigned int> d_acc;
-    uint64_t d_cut;
-    unsigned int d_flush;
-    uint64_t d_counter;
-    unsigned int d_flush_count;
-    unsigned int d_corr_sym;
-    void alert_fops();
-    float d_data_garble_rate;
-
-    friend fec_corr_bb_sptr
-	fec_make_corr_bb (std::vector<unsigned long long> correlator, int corr_sym, int corr_len, int cut, int flush, float thresh);
-    
-    fec_corr_bb (std::vector<unsigned long long> correlator, int corr_sym, int corr_len, int cut, int flush, float thresh);
- 
-    //rpcbasic_register_get<fec_corr_bb, std::vector< int> > d_correlator_rpc;
-    rpcbasic_register_variable_rw<uint64_t> d_cut_rpc; // integration period
-    rpcbasic_register_variable_rw<int> d_flush_rpc; // time to flush
-    rpcbasic_register_variable<uint64_t> d_msgsent_rpc;
-    rpcbasic_register_variable<uint64_t> d_msgrecv_rpc; 
-    rpcbasic_register_variable<float> d_data_garble_rate_rpc; 
-    
-    uint64_t d_msgsent,d_msgrecv;
-    std::vector<int> get_corr(){
-        std::vector<int> bits;
-        if(d_correlator.size() < 1){ return bits; }
-        for(int i=0; i<d_correlator[0].size(); i++){
-            bits.push_back( d_correlator[0][i] );
-            }
-        return bits;
-        }
-    
-     
-    bool d_havelock;
-    rpcbasic_register_variable<bool> d_havelock_rpc; 
-
- public:
-    
-  float get_data_garble_rate(int taps, float syn_density);
-  ~fec_corr_bb ();
-  int general_work (int noutput_items,
-		    gr_vector_int& ninput_items,
-		    gr_vector_const_void_star &input_items,
-		    gr_vector_void_star &output_items);
-
-  
-};
+  } /* namespace fec */
+} /* namespace gr */
 
 #endif /* INCLUDED_FEC_CORR_BB_H */

@@ -11,9 +11,9 @@
     <import>import fec</import>
     <var_make>
 #if int($ndim())==1 #
-self.$(id) = $(id) = map( (lambda a: fec.cc_make_decoder($framebits, $k, $rate, $polys, $state_start, $state_end,  $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim1) ); #slurp
-#else 
-self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_make_decoder($framebits, $k, $rate, $polys, $state_start, $state_end, $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim2) ) ), range(0,$dim1)); #slurp
+self.$(id) = $(id) = map( (lambda a: fec.cc_decoder.make($framebits, $k, $rate, $polys, $state_start, $state_end,  $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim1) ); #slurp
+#else
+self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_decoder.make($framebits, $k, $rate, $polys, $state_start, $state_end, $strb.tailbiting, $strb.terminated, $strb.truncated, $strb.streaming )), range(0,$dim2) ) ), range(0,$dim1)); #slurp
 #end if</var_make>
     <make></make>
 
@@ -38,7 +38,7 @@ self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_make_decoder($frame
             <name>1</name>
             <key>1</key>
         </option>
-        
+
     </param>
 
     <param>
@@ -56,7 +56,7 @@ self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_make_decoder($frame
         <type>int</type>
         <hide>#if (int($ndim()) >= 2) then 'none' else 'all' #</hide>
     </param>
-    
+
     <param>
         <name>Frame Bits</name>
         <key>framebits</key>
@@ -77,7 +77,7 @@ self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_make_decoder($frame
         <value>2</value>
         <type>int</type>
     </param>
-    
+
     <param>
         <name>Polynomials</name>
         <key>polys</key>
@@ -136,7 +136,7 @@ self.$(id) = $(id) = map( (lambda b: map( ( lambda a: fec.cc_make_decoder($frame
             <opt>terminated:False</opt>
             <opt>truncated:True</opt>
         </option>
-    </param>   
+    </param>
 
     <doc>
         This instantiates a 1-dim array of decoders or a 2-dim array of decoders

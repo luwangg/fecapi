@@ -1,19 +1,19 @@
 /* -*- c++ -*- */
 /*
  * Copyright 2013-2014 Free Software Foundation, Inc.
- * 
+ *
  * This file is part of GNU Radio
- * 
+ *
  * GNU Radio is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3, or (at your option)
  * any later version.
- * 
+ *
  * GNU Radio is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with GNU Radio; see the file COPYING.  If not, write to
  * the Free Software Foundation, Inc., 51 Franklin Street,
@@ -46,6 +46,10 @@ namespace gr {
     public:
       typedef boost::shared_ptr<generic_decoder> sptr;
 
+      generic_decoder(void) {};
+      generic_decoder(std::string name);
+      virtual ~generic_decoder();
+
       virtual int get_input_size() = 0;
       virtual int get_output_size() = 0;
       virtual int get_history();
@@ -54,21 +58,18 @@ namespace gr {
       virtual int get_input_item_size();
       virtual int get_output_item_size();
       virtual const char* get_output_conversion();
-      virtual ~generic_decoder();
-      void forecast(int noutput_items,
-                    gr_vector_int& ninput_items_required);
-      generic_decoder(void) {};
-      generic_decoder(std::string name);
+      virtual void forecast(int noutput_items,
+                            gr_vector_int& ninput_items_required);
     };
 
-    FEC_API int fec_get_decoder_output_size(generic_decoder::sptr my_decoder);
-    FEC_API int fec_get_decoder_input_size(generic_decoder::sptr my_decoder);
-    FEC_API float fec_get_shift(generic_decoder::sptr my_decoder);
-    FEC_API int fec_get_history(generic_decoder::sptr my_decoder);
-    FEC_API int fec_get_decoder_output_item_size(generic_decoder::sptr my_decoder);
-    FEC_API int fec_get_decoder_input_item_size(generic_decoder::sptr my_decoder);
-    FEC_API const char* fec_get_conversion(generic_decoder::sptr my_decoder);
-    FEC_API const char* fec_get_output_conversion(generic_decoder::sptr my_decoder);
+    FEC_API int get_decoder_output_size(generic_decoder::sptr my_decoder);
+    FEC_API int get_decoder_input_size(generic_decoder::sptr my_decoder);
+    FEC_API float get_shift(generic_decoder::sptr my_decoder);
+    FEC_API int get_history(generic_decoder::sptr my_decoder);
+    FEC_API int get_decoder_output_item_size(generic_decoder::sptr my_decoder);
+    FEC_API int get_decoder_input_item_size(generic_decoder::sptr my_decoder);
+    FEC_API const char* get_conversion(generic_decoder::sptr my_decoder);
+    FEC_API const char* get_output_conversion(generic_decoder::sptr my_decoder);
 
     class FEC_API decoder : virtual public block
     {

@@ -23,11 +23,15 @@
 install(FILES
     fec_api.h
     fec_ber_bf.h
+    fec_corr_bb.h
     fec_encoder.h
     fec_decoder.h
-    fec_interleave.h
     fec_deinterleave.h
+    fec_interleave.h
     fec_puncture_ff.h
+    fec_random_gen_b.h
+    fec_reinflate_bb.h
     cc_encoder.h
+    cc_decoder.h
     DESTINATION include/fec
 )

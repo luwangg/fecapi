@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2006 Free Software Foundation, Inc.
+ * Copyright 2013-2014 Free Software Foundation, Inc.
  *
  * This file is part of GNU Radio
  *
@@ -24,41 +24,51 @@
 #include <config.h>
 #endif
 
-#include <fec_random_gen_b.h>
+#include "fec_random_gen_b_impl.h"
 #include <gnuradio/io_signature.h>
 #include <libbertools.h>
 #include <math.h>
 #include <time.h>
 
-fec_random_gen_b_sptr
-fec_make_random_gen_b(long int randSeed)
-{
-    return gnuradio::get_initial_sptr(new fec_random_gen_b(randSeed));
-}
+namespace gr {
+  namespace fec {
 
-fec_random_gen_b::fec_random_gen_b(long int randSeed)
-  : gr::sync_block("fec_random_gen_b",
-		   gr::io_signature::make(0,0,0),
-		   gr::io_signature::make(1, 1, sizeof(unsigned char)))
-{
-    if (randSeed == 0) {
+    random_gen_b::sptr
+    random_gen_b::make(long int randSeed)
+    {
+      return gnuradio::get_initial_sptr
+        (new random_gen_b_impl(randSeed));
+    }
+
+    random_gen_b_impl::random_gen_b_impl(long int randSeed)
+      : gr::sync_block("random_gen_b",
+                       gr::io_signature::make(0,0,0),
+                       gr::io_signature::make(1, 1, sizeof(unsigned char)))
+    {
+      if(randSeed == 0) {
 	d_randSeed = 0xfff & (long int)time(NULL);
 	srand48(randSeed);
-    }
-    else {
+      }
+      else {
 	d_randSeed = randSeed;
+      }
     }
-}
 
-int
-fec_random_gen_b::work (int noutput_items,
-		       gr_vector_const_void_star &input_items,
-		       gr_vector_void_star &output_items)
-{
-  unsigned char *outBuffer = (unsigned char *)output_items[0];
+    random_gen_b_impl::~random_gen_b_impl()
+    {
+    }
 
-  randBuffer(outBuffer, noutput_items, 1);
+    int
+    random_gen_b_impl::work(int noutput_items,
+                            gr_vector_const_void_star &input_items,
+                            gr_vector_void_star &output_items)
+    {
+      unsigned char *outBuffer = (unsigned char *)output_items[0];
 
-  return noutput_items;
-}
+      randBuffer(outBuffer, noutput_items, 1);
 
+      return noutput_items;
+    }
+
+  } /* namespace fec */
+} /* namespace gr */

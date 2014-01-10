@@ -29,7 +29,8 @@
 namespace gr {
   namespace fec {
 
-    /*! \brief BER block in FECAPI
+    /*!
+     * \brief BER block in FECAPI
      * \ingroup error_coding_blk
      *
      * \details

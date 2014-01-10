@@ -1,4 +1,24 @@
 /* -*- c++ -*- */
+/*
+ * Copyright 2013-2014 Free Software Foundation, Inc.
+ *
+ * This file is part of GNU Radio
+ *
+ * GNU Radio is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * GNU Radio is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with GNU Radio; see the file COPYING.  If not, write to
+ * the Free Software Foundation, Inc., 51 Franklin Street,
+ * Boston, MA 02110-1301, USA.
+ */
 
 %{
 #include "fec_decoder.h"
@@ -11,11 +31,3 @@
 GR_SWIG_BLOCK_MAGIC2(fec, decoder);
 
 %template(generic_decoder_sptr) boost::shared_ptr<gr::fec::generic_decoder>;
-%rename(get_decoder_output_size) fec_get_decoder_output_size(gr::fec::generic_decoder::sptr);
-%rename(get_decoder_input_size) fec_get_decoder_input_size(gr::fec::generic_decoder::sptr);
-%rename(get_decoder_output_item_size) fec_get_decoder_output_item_size(gr::fec::generic_decoder::sptr);
-%rename(get_decoder_input_item_size) fec_get_decoder_input_item_size(gr::fec::generic_decoder::sptr);
-%rename(get_conversion) fec_get_conversion(gr::fec::generic_decoder::sptr);
-%rename(get_shift) fec_get_shift(gr::fec::generic_decoder::sptr);
-%rename(get_output_conversion) fec_get_output_conversion(gr::fec::generic_decoder::sptr);
-%rename(get_history) fec_get_history(gr::fec::generic_decoder::sptr);
