@@ -24,6 +24,13 @@ include(GrPlatform) #define LIB_SUFFIX
 include(GrPython)
 GR_PYTHON_CHECK_MODULE("PyQt4" PyQt4 True PYQT4_FOUND)
 
+if(PYTHONINTERP_FOUND)
+  add_definitions(-DENABLE_PYTHON)
+  list(APPEND qtgui_libs
+    ${PYTHON_LIBRARIES}
+  )
+endif(PYTHONINTERP_FOUND)
+
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}

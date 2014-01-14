@@ -41,9 +41,9 @@ namespace gr {
     }
 
     random_gen_b_impl::random_gen_b_impl(long int randSeed)
-      : gr::sync_block("random_gen_b",
-                       gr::io_signature::make(0,0,0),
-                       gr::io_signature::make(1, 1, sizeof(unsigned char)))
+      : sync_block("random_gen_b",
+                   io_signature::make(0,0,0),
+                   io_signature::make(1, 1, sizeof(unsigned char)))
     {
       if(randSeed == 0) {
 	d_randSeed = 0xfff & (long int)time(NULL);

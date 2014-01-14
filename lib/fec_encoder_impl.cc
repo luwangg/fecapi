@@ -59,9 +59,9 @@ namespace gr {
     encoder_impl::encoder_impl(generic_encoder::sptr my_encoder,
                                size_t input_item_size,
                                size_t output_item_size)
-      : gr::block("fec_encoder",
-                  gr::io_signature::make(1, 1, input_item_size),
-                  gr::io_signature::make(1, 1, output_item_size)),
+      : block("fec_encoder",
+              io_signature::make(1, 1, input_item_size),
+              io_signature::make(1, 1, output_item_size)),
         d_input_item_size(input_item_size), d_output_item_size(output_item_size)
     {
       set_fixed_rate(true);

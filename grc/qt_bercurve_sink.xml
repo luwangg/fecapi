@@ -5,35 +5,35 @@
 ###################################################
  -->
 <block>
-	<name>QT GUI Bercurve Sink</name>
-	<key>qtgui_bercurve_sink</key>
-	<category>FECAPI</category>
-	<import>from PyQt4 import Qt</import>
-	<import>import fec</import>
-	<import>import sip</import>
-	<import>import numpy</import>
-	<make>#set $win = 'self._%s_win'%$id
-fec.ber_sink_b(
-        $esno, \#range of esnos
-	$num_curves, \#number of curves
-	$berminerrors, \#ensure at least
-	$berlimit, \#cutoff
-	$curvenames, \#indiv. curve names
-)
-self.$(id).set_update_time($update_time)
-self.$(id).set_y_axis($ymin, $ymax)
-self.$(id).set_x_axis($(esno)[0], $(esno)[-1])
-self._$(id)_win = sip.wrapinstance(self.$(id).pyqwidget(), Qt.QWidget)
-$(gui_hint()($win))</make>
-        
-<param>
-  <name>esno</name>
-  <key>esno</key>
-  <value>numpy.arange(0.0, 4.0, .5)</value>
-  <type>raw</type>
-</param>
+  <name>QT GUI Bercurve Sink</name>
+  <key>qtgui_bercurve_sink</key>
+  <category>FECAPI</category>
+  <import>from PyQt4 import Qt</import>
+  <import>import fec</import>
+  <import>import sip</import>
+  <import>import numpy</import>
+  <make>#set $win = 'self._%s_win'%$id
+  fec.ber_sink_b(
+    $esno, \#range of esnos
+    $num_curves, \#number of curves
+    $berminerrors, \#ensure at least
+    $berlimit, \#cutoff
+    $curvenames, \#indiv. curve names
+  )
+  self.$(id).set_update_time($update_time)
+  self.$(id).set_y_axis($ymin, $ymax)
+  self.$(id).set_x_axis($(esno)[0], $(esno)[-1])
+  self._$(id)_win = sip.wrapinstance(self.$(id).pyqwidget(), Qt.QWidget)
+  $(gui_hint()($win))</make>
 
-<param>
+  <param>
+    <name>esno</name>
+    <key>esno</key>
+    <value>numpy.arange(0.0, 4.0, .5)</value>
+    <type>raw</type>
+  </param>
+
+  <param>
     <name>BERMINERRORS</name>
     <key>berminerrors</key>
     <value>100</value>
@@ -46,7 +46,6 @@ $(gui_hint()($win))</make>
     <value>-7.0</value>
     <type>real</type>
   </param>
-
 
   <param>
     <name>Num Curves</name>
@@ -63,8 +62,6 @@ $(gui_hint()($win))</make>
     <hide>part</hide>
   </param>
 
-
-
   <param>
     <name>Y min</name>
     <key>ymin</key>
@@ -72,6 +69,7 @@ $(gui_hint()($win))</make>
     <type>real</type>
     <hide>part</hide>
   </param>
+
   <param>
     <name>Y max</name>
     <key>ymax</key>
@@ -79,6 +77,7 @@ $(gui_hint()($win))</make>
     <type>real</type>
     <hide>part</hide>
   </param>
+
   <param>
     <name>Update Period</name>
     <key>update_time</key>
@@ -86,6 +85,7 @@ $(gui_hint()($win))</make>
     <type>real</type>
     <hide>part</hide>
   </param>
+
   <param>
     <name>GUI Hint</name>
     <key>gui_hint</key>
@@ -93,12 +93,12 @@ $(gui_hint()($win))</make>
     <type>gui_hint</type>
     <hide>part</hide>
   </param>
-  
+
   <sink>
     <name>out</name>
     <type>byte</type>
-    <nports>len($esno)*2*$num_curves</nports>  
-  </sink>  
+    <nports>len($esno)*2*$num_curves</nports>
+  </sink>
 
   <bus_structure_sink>map(lambda b: map(lambda a: b * len($esno) * 2 + a, range(len($esno)*2)), range($num_curves))</bus_structure_sink>
 

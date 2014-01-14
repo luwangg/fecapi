@@ -158,9 +158,9 @@ namespace gr {
     decoder_impl::decoder_impl(generic_decoder::sptr my_decoder,
                                size_t input_item_size,
                                size_t output_item_size)
-      : gr::block("fec_decoder",
-                  gr::io_signature::make(1, 1, input_item_size),
-                  gr::io_signature::make(1, 1, output_item_size)),
+      : block("fec_decoder",
+              io_signature::make(1, 1, input_item_size),
+              io_signature::make(1, 1, output_item_size)),
         d_input_item_size(input_item_size), d_output_item_size(output_item_size)
     {
       set_fixed_rate(true);
