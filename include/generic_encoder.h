@@ -20,40 +20,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_FEC_DECODER_H
-#define INCLUDED_FEC_DECODER_H
+#ifndef INCLUDED_FEC_GENERIC_ENCODER_H
+#define INCLUDED_FEC_GENERIC_ENCODER_H
 
 #include <fec_api.h>
-#include <generic_decoder.h>
 #include <gnuradio/block.h>
 #include <boost/shared_ptr.hpp>
-#include <boost/shared_array.hpp>
-#include <boost/format.hpp>
 
 namespace gr {
   namespace fec {
 
-    class FEC_API decoder : virtual public block
+    class FEC_API generic_encoder
     {
     public:
-      typedef boost::shared_ptr<decoder> sptr;
-      typedef boost::shared_array<unsigned char> buf_sptr;
+      friend class encoder;
+      virtual void generic_work(void *inBuffer, void *outBuffer) = 0;
+    public:
+      typedef boost::shared_ptr<generic_encoder> sptr;
 
-      static sptr make(generic_decoder::sptr my_decoder,
-                       size_t input_item_size,
-                       size_t output_item_size);
-
-      virtual int general_work(int noutput_items,
-                               gr_vector_int& ninput_items,
-                               gr_vector_const_void_star &input_items,
-                               gr_vector_void_star &output_items) = 0;
-      virtual int fixed_rate_ninput_to_noutput(int ninput) = 0;
-      virtual int fixed_rate_noutput_to_ninput(int noutput) = 0;
-      virtual void forecast(int noutput_items,
-                            gr_vector_int& ninput_items_required) = 0;
+      virtual int get_input_size() = 0;
+      virtual int get_output_size() = 0;
+      generic_encoder(void) {};
+      virtual ~generic_encoder();
     };
+
+    FEC_API int get_encoder_output_size(generic_encoder::sptr my_encoder);
+    FEC_API int get_encoder_input_size(generic_encoder::sptr my_encoder);
 
   } /* namespace fec */
 } /* namespace gr */
 
-#endif /* INCLUDED_FEC_DECODER_H */
+#endif /* INCLUDED_FEC_GENERIC_ENCODER_H */

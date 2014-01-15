@@ -31,22 +31,6 @@
 namespace gr {
   namespace fec {
 
-    generic_encoder::~generic_encoder()
-    {
-    }
-
-    int
-    get_encoder_output_size(generic_encoder::sptr my_encoder)
-    {
-      return my_encoder->get_output_size();
-    }
-
-    int
-    get_encoder_input_size(generic_encoder::sptr my_encoder)
-    {
-      return my_encoder->get_input_size();
-    }
-
     encoder::sptr
     encoder::make(generic_encoder::sptr my_encoder,
                   size_t input_item_size,

@@ -65,7 +65,6 @@ namespace gr {
         d_residbufs_real.push_back(fft::malloc_double(esnos.size()));
         d_residbufs_imag.push_back(fft::malloc_double(esnos.size()));
         for(int i = 0; i < d_nconnections; i++) {
-
           d_residbufs_real[j][i] = esnos[i];
           d_residbufs_imag[j][i] = 0.0;
           d_total.push_back(0);

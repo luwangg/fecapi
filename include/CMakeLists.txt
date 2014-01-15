@@ -22,6 +22,8 @@
 ########################################################################
 install(FILES
     fec_api.h
+    generic_decoder.h
+    generic_encoder.h
     fec_ber_bf.h
     fec_corr_bb.h
     fec_encoder.h

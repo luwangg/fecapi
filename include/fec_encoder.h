@@ -24,27 +24,12 @@
 #define INCLUDED_FEC_ENCODER_H
 
 #include <fec_api.h>
+#include <generic_encoder.h>
 #include <gnuradio/block.h>
+#include <boost/shared_ptr.hpp>
 
 namespace gr {
   namespace fec {
-
-    class FEC_API generic_encoder
-    {
-    public:
-      friend class encoder;
-      virtual void generic_work(void *inBuffer, void *outBuffer) = 0;
-    public:
-      typedef boost::shared_ptr<generic_encoder> sptr;
-
-      virtual int get_input_size() = 0;
-      virtual int get_output_size() = 0;
-      generic_encoder(void) {};
-      virtual ~generic_encoder();
-    };
-
-    FEC_API int get_encoder_output_size(generic_encoder::sptr my_encoder);
-    FEC_API int get_encoder_input_size(generic_encoder::sptr my_encoder);
 
     class FEC_API encoder : virtual public block
     {

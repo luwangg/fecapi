@@ -1,4 +1,4 @@
-# Copyright 2011 Free Software Foundation, Inc.
+# Copyright 2013-2014 Free Software Foundation, Inc.
 #
 # This file is part of GNU Radio
 #
@@ -40,6 +40,8 @@ include_directories(
 
 list(APPEND gnuradio_fec_sources
     libbertools.cc
+    generic_decoder.cc
+    generic_encoder.cc
     fec_ber_bf_impl.cc
     fec_corr_bb_impl.cc
     fec_encoder_impl.cc

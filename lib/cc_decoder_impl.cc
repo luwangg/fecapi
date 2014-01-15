@@ -32,8 +32,6 @@
 #include <sstream>
 #include <stdio.h>
 #include <vector>
-#include <fec_decoder.h>
-#include <cc_common.h>
 
 namespace gr {
   namespace fec {
@@ -265,7 +263,7 @@ namespace gr {
       cc_decoder_impl::parity(int x)
       {
         x ^= (x >> 16);
-        x ^= (x >> 8);
+`        x ^= (x >> 8);
         return parityb(x);
       }
 
@@ -300,7 +298,7 @@ namespace gr {
 
         if(vp == NULL)
           return -1;
-        for(i=0;i<d_numstates;i++) {
+        for(i = 0; i < d_numstates; i++) {
           vp->metrics1.t[i] = 63;
         }
 
@@ -360,9 +358,9 @@ namespace gr {
 
       int
       cc_decoder_impl::chainback_viterbi(DECISIONTYPE* data,
-                                    unsigned int nbits,
-                                    unsigned int endstate,
-                                    unsigned int tailsize)
+                                         unsigned int nbits,
+                                         unsigned int endstate,
+                                         unsigned int tailsize)
       {
         DECISIONTYPE *d;
 

@@ -30,6 +30,8 @@
 %include <ber_sink_b.i>
 
 %{
+#include "generic_encoder.h"
+#include "generic_decoder.h"
 #include "cc_encoder.h"
 #include "cc_decoder.h"
 #include "fec_ber_bf.h"
@@ -41,6 +43,8 @@
 #include "fec_reinflate_bb.h"
 %}
 
+%include "generic_encoder.h"
+%include "generic_decoder.h"
 %include "cc_encoder.h"
 %include "cc_decoder.h"
 %include "fec_ber_bf.h"
