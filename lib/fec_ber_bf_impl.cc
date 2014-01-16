@@ -26,7 +26,7 @@
 
 #include "fec_ber_bf_impl.h"
 #include <gnuradio/io_signature.h>
-#include <libbertools.h>
+#include <fec/libbertools.h>
 #include <math.h>
 
 namespace gr {

@@ -20,14 +20,5 @@
  * Boston, MA 02110-1301, USA.
  */
 
-%{
-#include "fec_decoder.h"
-%}
-
-%include "fec_decoder.h"
-
 %nodefaultctor gr::fec::generic_decoder;
-
-GR_SWIG_BLOCK_MAGIC2(fec, decoder);
-
 %template(generic_decoder_sptr) boost::shared_ptr<gr::fec::generic_decoder>;

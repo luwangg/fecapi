@@ -23,13 +23,13 @@
 #ifndef INCLUDED_FEC_BER_SINK_B_H
 #define INCLUDED_FEC_BER_SINK_B_H
 
-#include <fec_api.h>
+#include <fec/fec_api.h>
 #include <gnuradio/block.h>
 #include <qapplication.h>
 
-#ifdef ENABLE_PYTHON
+//#ifdef ENABLE_PYTHON
 #include <Python.h>
-#endif
+//#endif
 
 namespace gr {
   namespace fec {
@@ -47,9 +47,9 @@ namespace gr {
 
       virtual void exec_() = 0;
 
-#ifdef ENABLE_PYTHON
+      //#ifdef ENABLE_PYTHON
       virtual PyObject* pyqwidget() = 0;
-#endif
+      //#endif
 
       virtual void set_y_axis(double min, double max) = 0;
       virtual void set_x_axis(double min, double max) = 0;

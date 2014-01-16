@@ -1,4 +1,4 @@
-# Copyright 2013-2014 Free Software Foundation, Inc.
+# Copyright 2011 Free Software Foundation, Inc.
 #
 # This file is part of GNU Radio
 #
@@ -20,49 +20,41 @@
 ########################################################################
 # Setup library
 ########################################################################
-include(GrPlatform) #define LIB_SUFFIX
-include(GrPython)
-GR_PYTHON_CHECK_MODULE("PyQt4" PyQt4 True PYQT4_FOUND)
 
-if(PYTHONINTERP_FOUND)
-  add_definitions(-DENABLE_PYTHON)
-  list(APPEND qtgui_libs
-    ${PYTHON_LIBRARIES}
-  )
-endif(PYTHONINTERP_FOUND)
-
-include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}
-  ${CMAKE_CURRENT_BINARY_DIR}
-  ${GNURADIO_RUNTIME_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIRS}
+add_library(fec SHARED
+  generic_decoder.cc
+  generic_encoder.cc
+  cc_decoder_impl.cc
+  cc_encoder_impl.cc
 )
 
-list(APPEND gnuradio_fec_sources
+target_link_libraries(fec 
+  ${Boost_LIBRARIES} 
+  volk_fecapi
+)
+set_target_properties(fec PROPERTIES DEFINE_SYMBOL "fec_EXPORTS")
+
+IF(${CAN_HAS_GNURADIO} STREQUAL 'YESS!')
+  include(GrPlatform) #define LIB_SUFFIX
+  include(GrPython)
+  GR_PYTHON_CHECK_MODULE("PyQt4" PyQt4 True PYQT4_FOUND)
+
+  add_library(gr-fec SHARED
     libbertools.cc
-    generic_decoder.cc
-    generic_encoder.cc
-    fec_ber_bf_impl.cc
-    fec_corr_bb_impl.cc
     fec_encoder_impl.cc
     fec_decoder_impl.cc
+    fec_ber_bf_impl.cc
+    fec_corr_bb_impl.cc
     fec_deinterleave_impl.cc
     fec_interleave_impl.cc
     fec_puncture_ff_impl.cc
     fec_random_gen_b_impl.cc
     fec_reinflate_bb_impl.cc
     ber_sink_b_impl.cc
-    cc_decoder_impl.cc
-    cc_encoder_impl.cc
-)
+    )
 
-add_library(fec SHARED ${gnuradio_fec_sources})
-
-message("${GNURADIO_QTGUI_LIBRARIES}")
-message("${QT_LIBRARIES}")
-
-target_link_libraries(fec
-    ${Boost_LIBRARIES}
+  target_link_libraries(gr-fec 
+    ${Boost_LIBRARIES} 
     ${VOLK_LIBRARIES}
     ${QT_LIBRARIES}
     ${QWT_LIBRARIES}
@@ -70,17 +62,18 @@ target_link_libraries(fec
     ${GNURADIO_QTGUI_LIBRARIES}
     ${GNURADIO_FFT_LIBRARIES}
     volk_fecapi
-)
-set_target_properties(fec PROPERTIES DEFINE_SYMBOL "fec_EXPORTS")
-
+    fec
+    )
+  set_target_properties(gr-fec PROPERTIES DEFINE_SYMBOL "fec_EXPORTS")
+    
+ENDIF()
 
 ########################################################################
 # Install info files for Python
 ########################################################################
-install(FILES
+install(FILES 
   DESTINATION ${GR_PYTHON_DIR}/fec
 )
-
 
 ########################################################################
 # Install built library files
@@ -91,13 +84,23 @@ install(TARGETS fec
     RUNTIME DESTINATION bin              # .dll file
 )
 
+IF(${CAN_HAS_GNURADIO} STREQUAL 'YESS!')
+    install(TARGETS gr-fec
+        LIBRARY DESTINATION lib${LIB_SUFFIX} # .so/.dylib file
+        ARCHIVE DESTINATION lib${LIB_SUFFIX} # .lib file
+        RUNTIME DESTINATION bin              # .dll file
+        )
+ENDIF()
+
 ########################################################################
 # Build and register unit test
 ########################################################################
 find_package(Boost COMPONENTS unit_test_framework)
 
-include(GrTest)
-set(GR_TEST_TARGET_DEPS fec)
+IF(${CAN_HAS_GNURADIO} STREQUAL 'YESS!')
+    include(GrTest)
+    set(GR_TEST_TARGET_DEPS gr-fec)
+ENDIF()
 #turn each test cpp file into an executable with an int main(t) function
 add_definitions(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 

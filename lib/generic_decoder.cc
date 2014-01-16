@@ -24,7 +24,7 @@
 #include "config.h"
 #endif
 
-#include <generic_decoder.h>
+#include <fec/generic_decoder.h>
 #include <stdio.h>
 
 namespace gr {
@@ -82,13 +82,6 @@ namespace gr {
     {
       return my_id;
     }
-
-    void
-    generic_decoder::forecast(int noutput_items,
-                              gr_vector_int& ninput_items_required)
-    {
-    }
-
 
     /*******************************************************
      * Static functions

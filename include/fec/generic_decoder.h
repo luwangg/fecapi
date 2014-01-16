@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_GENERIC_DECODER_H
 #define INCLUDED_FEC_GENERIC_DECODER_H
 
-#include <fec_api.h>
+#include <fec/fec_api.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/format.hpp>
 
@@ -56,8 +56,6 @@ namespace gr {
       virtual int get_input_item_size();
       virtual int get_output_item_size();
       virtual const char* get_output_conversion();
-      virtual void forecast(int noutput_items,
-                            gr_vector_int& ninput_items_required);
     };
 
     FEC_API int get_decoder_output_size(generic_decoder::sptr my_decoder);

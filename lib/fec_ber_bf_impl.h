@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_BER_BF_IMPL_H
 #define INCLUDED_FEC_BER_BF_IMPL_H
 
-#include <fec_ber_bf.h>
+#include <fec/fec_ber_bf.h>
 
 namespace gr {
   namespace fec {

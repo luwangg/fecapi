@@ -26,7 +26,7 @@
 
 #include "fec_random_gen_b_impl.h"
 #include <gnuradio/io_signature.h>
-#include <libbertools.h>
+#include <fec/libbertools.h>
 #include <math.h>
 #include <time.h>
 

@@ -25,36 +25,43 @@
 %include "gnuradio.i"        // the common stuff
 
 // the .i files
-%include <fec_encoder.i>
-%include <fec_decoder.i>
-%include <ber_sink_b.i>
+ //%include <fec_encoder.i>
+ //%include <fec_decoder.i>
 
 %{
-#include "generic_encoder.h"
-#include "generic_decoder.h"
-#include "cc_encoder.h"
-#include "cc_decoder.h"
-#include "fec_ber_bf.h"
-#include "fec_corr_bb.h"
-#include "fec_deinterleave.h"
-#include "fec_interleave.h"
-#include "fec_puncture_ff.h"
-#include "fec_random_gen_b.h"
-#include "fec_reinflate_bb.h"
+#include "fec/generic_encoder.h"
+#include "fec/generic_decoder.h"
+#include "fec/cc_encoder.h"
+#include "fec/cc_decoder.h"
+#include "fec/fec_encoder.h"
+#include "fec/fec_decoder.h"
+#include "fec/fec_ber_bf.h"
+#include "fec/fec_corr_bb.h"
+#include "fec/fec_deinterleave.h"
+#include "fec/fec_interleave.h"
+#include "fec/fec_puncture_ff.h"
+#include "fec/fec_random_gen_b.h"
+#include "fec/fec_reinflate_bb.h"
+#include "fec/ber_sink_b.h"
 %}
 
-%include "generic_encoder.h"
-%include "generic_decoder.h"
-%include "cc_encoder.h"
-%include "cc_decoder.h"
-%include "fec_ber_bf.h"
-%include "fec_corr_bb.h"
-%include "fec_deinterleave.h"
-%include "fec_interleave.h"
-%include "fec_puncture_ff.h"
-%include "fec_random_gen_b.h"
-%include "fec_reinflate_bb.h"
+%include "fec/generic_encoder.h"
+%include "fec/generic_decoder.h"
+%include "fec/cc_encoder.h"
+%include "fec/cc_decoder.h"
+%include "fec/fec_encoder.h"
+%include "fec/fec_decoder.h"
+%include "fec/fec_ber_bf.h"
+%include "fec/fec_corr_bb.h"
+%include "fec/fec_deinterleave.h"
+%include "fec/fec_interleave.h"
+%include "fec/fec_puncture_ff.h"
+%include "fec/fec_random_gen_b.h"
+%include "fec/fec_reinflate_bb.h"
+%include "fec/ber_sink_b.h"
 
+GR_SWIG_BLOCK_MAGIC2(fec, encoder);
+GR_SWIG_BLOCK_MAGIC2(fec, decoder);
 GR_SWIG_BLOCK_MAGIC2(fec, ber_bf);
 GR_SWIG_BLOCK_MAGIC2(fec, corr_bb);
 GR_SWIG_BLOCK_MAGIC2(fec, deinterleave);
@@ -62,3 +69,4 @@ GR_SWIG_BLOCK_MAGIC2(fec, interleave);
 GR_SWIG_BLOCK_MAGIC2(fec, puncture_ff);
 GR_SWIG_BLOCK_MAGIC2(fec, random_gen_b);
 GR_SWIG_BLOCK_MAGIC2(fec, reinflate_bb);
+GR_SWIG_BLOCK_MAGIC2(fec, ber_sink_b);

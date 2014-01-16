@@ -24,7 +24,7 @@
 #include "config.h"
 #endif
 
-#include <generic_encoder.h>
+#include <fec/generic_encoder.h>
 #include <stdio.h>
 
 namespace gr {

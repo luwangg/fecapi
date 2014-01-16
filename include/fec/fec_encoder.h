@@ -23,8 +23,8 @@
 #ifndef INCLUDED_FEC_ENCODER_H
 #define INCLUDED_FEC_ENCODER_H
 
-#include <fec_api.h>
-#include <generic_encoder.h>
+#include <fec/fec_api.h>
+#include <fec/generic_encoder.h>
 #include <gnuradio/block.h>
 #include <boost/shared_ptr.hpp>
 

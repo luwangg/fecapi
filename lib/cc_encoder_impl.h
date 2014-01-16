@@ -25,7 +25,7 @@
 
 #include <map>
 #include <string>
-#include <cc_encoder.h>
+#include <fec/cc_encoder.h>
 
 namespace gr {
   namespace fec {

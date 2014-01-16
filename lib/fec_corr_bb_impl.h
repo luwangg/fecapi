@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_CORR_BB_IMPL_H
 #define INCLUDED_FEC_CORR_BB_IMPL_H
 
-#include <fec_corr_bb.h>
+#include <fec/fec_corr_bb.h>
 
 namespace gr {
   namespace fec {
@@ -35,8 +35,6 @@ namespace gr {
       unsigned int d_lane;
       unsigned int d_op;
      
-      void catch_msg(pmt::pmt_t msg);
-    
       int d_angry_fop;
       int d_acquire;
       //int d_acquire_track;
@@ -54,12 +52,12 @@ namespace gr {
       void alert_fops();
       float d_data_garble_rate;
 
-      //rpcbasic_register_get<fec_corr_bb, std::vector< int> > d_correlator_rpc;
-      rpcbasic_register_variable_rw<uint64_t> d_cut_rpc; // integration period
-      rpcbasic_register_variable_rw<int> d_flush_rpc; // time to flush
-      rpcbasic_register_variable<uint64_t> d_msgsent_rpc;
-      rpcbasic_register_variable<uint64_t> d_msgrecv_rpc; 
-      rpcbasic_register_variable<float> d_data_garble_rate_rpc; 
+//      //rpcbasic_register_get<fec_corr_bb, std::vector< int> > d_correlator_rpc;
+//      rpcbasic_register_variable_rw<uint64_t> d_cut_rpc; // integration period
+//      rpcbasic_register_variable_rw<int> d_flush_rpc; // time to flush
+//      rpcbasic_register_variable<uint64_t> d_msgsent_rpc;
+//      rpcbasic_register_variable<uint64_t> d_msgrecv_rpc; 
+//      rpcbasic_register_variable<float> d_data_garble_rate_rpc; 
       
       uint64_t d_msgsent,d_msgrecv;
       std::vector<int> get_corr()
@@ -75,7 +73,7 @@ namespace gr {
       }
 
       bool d_havelock;
-      rpcbasic_register_variable<bool> d_havelock_rpc; 
+      //rpcbasic_register_variable<bool> d_havelock_rpc; 
 
     public:
       corr_bb_impl(std::vector<unsigned long long> correlator,
@@ -90,6 +88,7 @@ namespace gr {
                        gr_vector_void_star &output_items);
 
       float data_garble_rate(int taps, float target);
+    };
 
   } /* namespace fec */
 } /* namespace gr */

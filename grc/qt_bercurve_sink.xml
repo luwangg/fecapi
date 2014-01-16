@@ -20,11 +20,11 @@
     $berlimit, \#cutoff
     $curvenames, \#indiv. curve names
   )
-  self.$(id).set_update_time($update_time)
-  self.$(id).set_y_axis($ymin, $ymax)
-  self.$(id).set_x_axis($(esno)[0], $(esno)[-1])
-  self._$(id)_win = sip.wrapinstance(self.$(id).pyqwidget(), Qt.QWidget)
-  $(gui_hint()($win))</make>
+self.$(id).set_update_time($update_time)
+self.$(id).set_y_axis($ymin, $ymax)
+self.$(id).set_x_axis($(esno)[0], $(esno)[-1])
+self._$(id)_win = sip.wrapinstance(self.$(id).pyqwidget(), Qt.QWidget)
+$(gui_hint()($win))</make>
 
   <param>
     <name>esno</name>

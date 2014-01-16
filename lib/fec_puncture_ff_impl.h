@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_PUNCTURE_FF_IMPL_H
 #define INCLUDED_FEC_PUNCTURE_FF_IMPL_H
 
-#include <fec_puncture_ff.h>
+#include <fec/fec_puncture_ff.h>
 
 namespace gr {
   namespace fec {

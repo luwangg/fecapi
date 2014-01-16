@@ -36,9 +36,7 @@ foreach(incdir ${GNURADIO_RUNTIME_INCLUDE_DIRS})
 endforeach(incdir)
 list(APPEND GR_SWIG_INCLUDE_DIRS ${PYTHON_INCLUDE_PATH})
 
-
-
-set(GR_SWIG_LIBRARIES fec)
+set(GR_SWIG_LIBRARIES gr-fec)
 
 GR_SWIG_MAKE(fec_swig fec_swig.i)
 

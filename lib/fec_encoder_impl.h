@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_ENCODER_IMPL_H
 #define INCLUDED_FEC_ENCODER_IMPL_H
 
-#include <fec_encoder.h>
+#include <fec/fec_encoder.h>
 
 namespace gr {
   namespace fec {

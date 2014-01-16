@@ -32,8 +32,8 @@
 #include <sstream>
 #include <stdio.h>
 #include <vector>
-#include <fec_encoder.h>
-#include <cc_common.h>
+#include <fec/generic_encoder.h>
+#include <fec/cc_common.h>
 
 namespace gr {
   namespace fec {

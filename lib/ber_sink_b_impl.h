@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_BER_SINK_B_IMPL_H
 #define INCLUDED_FEC_BER_SINK_B_IMPL_H
 
-#include <ber_sink_b.h>
+#include <fec/ber_sink_b.h>
 #include <gnuradio/high_res_timer.h>
 #include <gnuradio/thread/thread.h>
 #include <gnuradio/qtgui/constellationdisplayform.h>
@@ -68,9 +68,9 @@ namespace gr {
       void exec_();
       QWidget*  qwidget();
 
-#ifdef ENABLE_PYTHON
+      //#ifdef ENABLE_PYTHON
       PyObject* pyqwidget();
-#endif
+      //#endif
 
       void set_y_axis(double min, double max);
       void set_x_axis(double min, double max);

@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_RANDOM_GEN_B_H
 #define INCLUDED_FEC_RANDOM_GEN_B_H
 
-#include <fec_api.h>
+#include <fec/fec_api.h>
 #include <gnuradio/sync_block.h>
 
 namespace gr {

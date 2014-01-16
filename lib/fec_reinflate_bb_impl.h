@@ -20,34 +20,37 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_FEC_REINFLATE_BB_H
-#define INCLUDED_FEC_REINFLATE_BB_H
+#ifndef INCLUDED_FEC_REINFLATE_BB_IMPL_H
+#define INCLUDED_FEC_REINFLATE_BB_IMPL_H
 
-#include <fec/fec_api.h>
-#include <gnuradio/block.h>
+#include <fec/fec_reinflate_bb.h>
 
 namespace gr {
   namespace fec {
 
-    /*!
-     * \brief Reinflate block in FECAPI
-     * \ingroup error_coding_blk
-     *
-     * \details
-     *
-     * What does this block do?
-     */
-    class FEC_API reinflate_bb : virtual public block
+    class FEC_API reinflate_bb_impl : public reinflate_bb
     {
+    private:
+      int d_delay;
+      int d_puncholes;
+      int d_puncsize;
+      int d_puncpat;
+  
     public:
-      // gr::fec::reinflate_bb::sptr
-      typedef boost::shared_ptr<reinflate_bb> sptr;
+      reinflate_bb_impl(int delay, int puncpat, int puncholes, int puncsize); 
+      ~reinflate_bb_impl();
 
-      static sptr make(int delay, int puncpat,
-                       int puncholes, int puncsize);
+      int general_work(int noutput_items,
+                       gr_vector_int& ninput_items,
+                       gr_vector_const_void_star &input_items,
+                       gr_vector_void_star &output_items);
+      int fixed_rate_ninput_to_noutput(int ninput);
+      int fixed_rate_noutput_to_ninput(int noutput);
+      void forecast(int noutput_items,
+                    gr_vector_int& ninput_items_required);
     };
 
   } /* namespace fec */
 } /* namespace gr */
 
-#endif /* INCLUDED_FEC_REINFLATE_BB_H */
+#endif /* INCLUDED_FEC_REINFLATE_BB_IMPL_H */

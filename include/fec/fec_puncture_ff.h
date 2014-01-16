@@ -23,8 +23,8 @@
 #ifndef INCLUDED_FEC_PUNCTURE_FF_H
 #define INCLUDED_FEC_PUNCTURE_FF_H
 
+#include <fec/fec_api.h>
 #include <gnuradio/block.h>
-#include <fec_api.h>
 
 namespace gr {
   namespace fec {

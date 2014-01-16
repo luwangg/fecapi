@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FEC_DEINTERLEAVE_H
 #define INCLUDED_FEC_DEINTERLEAVE_H
 
-#include <fec_api.h>
+#include <fec/fec_api.h>
 #include <gnuradio/block.h>
 
 namespace gr {

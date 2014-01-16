@@ -23,7 +23,7 @@
 #include "ber_sink_b_impl.h"
 #include <gnuradio/io_signature.h>
 #include <gnuradio/fft/fft.h>
-#include <libbertools.h>
+#include <fec/libbertools.h>
 #include <math.h>
 
 namespace gr {
