@@ -24,9 +24,11 @@
 
 %include "gnuradio.i"        // the common stuff
 
-// the .i files
- //%include <fec_encoder.i>
- //%include <fec_decoder.i>
+%nodefaultctor gr::fec::generic_encoder;
+%template(generic_encoder_sptr) boost::shared_ptr<gr::fec::generic_encoder>;
+
+%nodefaultctor gr::fec::generic_decoder;
+%template(generic_decoder_sptr) boost::shared_ptr<gr::fec::generic_decoder>;
 
 %{
 #include "fec/generic_encoder.h"
