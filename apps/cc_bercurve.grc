@@ -1,23 +1,59 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Thu Jan 16 09:12:39 2014</timestamp>
+  <timestamp>Thu Jan 16 10:21:50 2014</timestamp>
   <block>
-    <key>import</key>
+    <key>options</key>
     <param>
       <key>id</key>
-      <value>import_0</value>
+      <value>cc_bercurve</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>import</key>
-      <value>import fec</value>
+      <key>title</key>
+      <value></value>
+    </param>
+    <param>
+      <key>author</key>
+      <value></value>
+    </param>
+    <param>
+      <key>description</key>
+      <value></value>
+    </param>
+    <param>
+      <key>window_size</key>
+      <value>1280, 1024</value>
+    </param>
+    <param>
+      <key>generate_options</key>
+      <value>qt_gui</value>
+    </param>
+    <param>
+      <key>category</key>
+      <value>Custom</value>
+    </param>
+    <param>
+      <key>run_options</key>
+      <value>prompt</value>
+    </param>
+    <param>
+      <key>run</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>realtime_scheduling</key>
+      <value></value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(14, 82)</value>
+      <value>(10, 10)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -36,7 +72,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>numpy.arange(0, 4, .25) </value>
+      <value>numpy.arange(0, 8, .5) </value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -51,7 +87,7 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>samp_rate_0</value>
+      <value>k</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -59,57 +95,11 @@
     </param>
     <param>
       <key>value</key>
-      <value>35000000</value>
+      <value>7</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(15, 135)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>polys</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[79, 109]</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(252, 81)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>framebits</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>4096</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(157, 79)</value>
+      <value>(178, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -143,7 +133,7 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>k</value>
+      <value>framebits</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -151,11 +141,80 @@
     </param>
     <param>
       <key>value</key>
-      <value>7</value>
+      <value>4096</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(178, 12)</value>
+      <value>(157, 79)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>polys</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[79, 109]</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(252, 81)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>samp_rate_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>35000000</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(15, 135)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>import</key>
+    <param>
+      <key>id</key>
+      <value>import_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>import</key>
+      <value>import fec</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(14, 82)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -289,66 +348,6 @@
     </param>
   </block>
   <block>
-    <key>qtgui_bercurve_sink</key>
-    <param>
-      <key>id</key>
-      <value>qtgui_bercurve_sink_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>esno</key>
-      <value>esno_0</value>
-    </param>
-    <param>
-      <key>berminerrors</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>berlimit</key>
-      <value>-6.0</value>
-    </param>
-    <param>
-      <key>num_curves</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>curvenames</key>
-      <value>[]</value>
-    </param>
-    <param>
-      <key>ymin</key>
-      <value>-10</value>
-    </param>
-    <param>
-      <key>ymax</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>update_time</key>
-      <value>0.10</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(712, 215)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <bus_sink>1</bus_sink>
-  </block>
-  <block>
     <key>new_bercurve</key>
     <param>
       <key>id</key>
@@ -392,7 +391,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(428, 213)</value>
+      <value>(428, 94)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -401,63 +400,116 @@
     <bus_source>1</bus_source>
   </block>
   <block>
-    <key>options</key>
+    <key>new_bercurve</key>
     <param>
       <key>id</key>
-      <value>cc_bercurve</value>
+      <value>new_bercurve_0_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>title</key>
+      <key>esno</key>
+      <value>esno_0</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate_0</value>
+    </param>
+    <param>
+      <key>encoder_list</key>
+      <value>None</value>
+    </param>
+    <param>
+      <key>decoder_list</key>
+      <value>None</value>
+    </param>
+    <param>
+      <key>puncpat</key>
+      <value>'11'</value>
+    </param>
+    <param>
+      <key>affinity</key>
       <value></value>
     </param>
     <param>
-      <key>author</key>
-      <value></value>
-    </param>
-    <param>
-      <key>description</key>
-      <value></value>
-    </param>
-    <param>
-      <key>window_size</key>
-      <value>1280, 1024</value>
-    </param>
-    <param>
-      <key>generate_options</key>
-      <value>qt_gui</value>
-    </param>
-    <param>
-      <key>category</key>
-      <value>Custom</value>
-    </param>
-    <param>
-      <key>run_options</key>
-      <value>prompt</value>
-    </param>
-    <param>
-      <key>run</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>max_nouts</key>
+      <key>minoutbuf</key>
       <value>0</value>
     </param>
     <param>
-      <key>realtime_scheduling</key>
-      <value></value>
+      <key>maxoutbuf</key>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(10, 10)</value>
+      <value>(425, 209)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
+    <bus_source>1</bus_source>
+  </block>
+  <block>
+    <key>qtgui_bercurve_sink</key>
+    <param>
+      <key>id</key>
+      <value>qtgui_bercurve_sink_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>esno</key>
+      <value>esno_0</value>
+    </param>
+    <param>
+      <key>berminerrors</key>
+      <value>100</value>
+    </param>
+    <param>
+      <key>berlimit</key>
+      <value>-6.0</value>
+    </param>
+    <param>
+      <key>num_curves</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>curvenames</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>ymin</key>
+      <value>-10</value>
+    </param>
+    <param>
+      <key>ymax</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>update_time</key>
+      <value>0.10</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(713, 143)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <bus_sink>1</bus_sink>
   </block>
   <connection>
     <source_block_id>new_bercurve_0</source_block_id>
@@ -655,6 +707,204 @@
     <source_block_id>new_bercurve_0</source_block_id>
     <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
     <source_key>32</source_key>
+    <sink_key>64</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>0</source_key>
     <sink_key>32</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>33</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>2</source_key>
+    <sink_key>34</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>3</source_key>
+    <sink_key>35</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>4</source_key>
+    <sink_key>36</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>5</source_key>
+    <sink_key>37</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>6</source_key>
+    <sink_key>38</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>7</source_key>
+    <sink_key>39</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>8</source_key>
+    <sink_key>40</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>9</source_key>
+    <sink_key>41</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>10</source_key>
+    <sink_key>42</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>11</source_key>
+    <sink_key>43</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>12</source_key>
+    <sink_key>44</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>13</source_key>
+    <sink_key>45</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>14</source_key>
+    <sink_key>46</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>15</source_key>
+    <sink_key>47</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>16</source_key>
+    <sink_key>48</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>17</source_key>
+    <sink_key>49</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>18</source_key>
+    <sink_key>50</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>19</source_key>
+    <sink_key>51</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>20</source_key>
+    <sink_key>52</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>21</source_key>
+    <sink_key>53</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>22</source_key>
+    <sink_key>54</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>23</source_key>
+    <sink_key>55</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>24</source_key>
+    <sink_key>56</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>25</source_key>
+    <sink_key>57</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>26</source_key>
+    <sink_key>58</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>27</source_key>
+    <sink_key>59</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>28</source_key>
+    <sink_key>60</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>29</source_key>
+    <sink_key>61</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>30</source_key>
+    <sink_key>62</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>31</source_key>
+    <sink_key>63</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>new_bercurve_0_0</source_block_id>
+    <sink_block_id>qtgui_bercurve_sink_0</sink_block_id>
+    <source_key>32</source_key>
+    <sink_key>65</sink_key>
   </connection>
 </flow_graph>

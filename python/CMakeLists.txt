@@ -35,6 +35,7 @@ GR_PYTHON_INSTALL(
     __init__.py
     bercurve_generate.py
     ber_generator.py
+    ber_raw_generator.py
     gaussnoise_ff.py
     threaded_decoder.py
     capillary_threaded_decoder.py
@@ -44,6 +45,7 @@ GR_PYTHON_INSTALL(
     extended_encoder_interface.py
     bitflip.py
     fec_test.py
+    fec_raw_test.py
     new_bercurve_generate.py
     DESTINATION ${GR_PYTHON_DIR}/fec
 )

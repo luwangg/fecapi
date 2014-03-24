@@ -37,16 +37,22 @@ class bercurve_generator(gr.hier_block2):
 		self.gr_interleave_0 = blocks.interleave(gr.sizeof_float*1)
 		self.ber_generators = []
 		for i in range(0, len(esno)):
-			ber_generator_temp = ber_generator(
-				generic_encoder=encoder_list[i],
-				generic_decoder=decoder_list[i],
-				esno=esno[i],
-				samp_rate=samp_rate,
-				berminerrors=berminerrors,
-				berlimit=berlimit,
-				threading=threading,
-				puncpat=puncpat
-				);
+                        if(generic_encoder == None):
+                                ber_generator_temp = ber_raw_generator(
+                                        esno=esno[i],
+                                        samp_rate=samp_rate,
+                                        berminerrors=berminerrors,
+                                        berlimit=berlimit)
+                        else:
+                                ber_generator_temp = ber_generator(
+                                        generic_encoder=encoder_list[i],
+                                        generic_decoder=decoder_list[i],
+                                        esno=esno[i],
+                                        samp_rate=samp_rate,
+                                        berminerrors=berminerrors,
+                                        berlimit=berlimit,
+                                        threading=threading,
+                                        puncpat=puncpat)
 			self.ber_generators.append(ber_generator_temp);
 		##################################################
 		# Connections
